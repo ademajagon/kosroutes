@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl-csp";
-import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker"; // eslint-disable-line
+import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
 import { useRouter } from "next/router";
 import { Route, Routes } from "types";
 
@@ -29,8 +29,6 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
   const mapContainer = useRef(null);
 
   const [stateMap, setStateMap] = useState(null);
-  // const router = useRouter();
-  // const queryRoute = router.query.slug;
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -47,9 +45,6 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
           color,
           geoJson: { features },
         } = route;
-        // const { coordinates: startCoordinates } = features[0].geometry;
-        // const { coordinates: endCoordinates } =
-        //   features[features.length - 1].geometry;
 
         map.addSource(slug, {
           type: "geojson",
@@ -92,7 +87,6 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
               },
               geometry: {
                 type: "Point",
-                // coordinates: startCoordinates[0],
               },
             },
           },
@@ -110,19 +104,10 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
               },
               geometry: {
                 type: "Point",
-                // coordinates: endCoordinates.pop(),
               },
             },
           },
         });
-
-        // map.on("click", `${slug}-fill`, () => {
-        //   // Navigate and fly to route on click
-        //   flyToGeoJson(map, route.geoJson);
-        //   if (!queryRoute) {
-        //     router.push(`/${slug}`);
-        //   }
-        // });
 
         map.on("mouseenter", `${slug}-fill`, () => {
           // Change the cursor style as a UI indicator.
@@ -135,13 +120,6 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
           map.getCanvas().style.cursor = "";
           map.setPaintProperty(slug, "line-width", 4);
         });
-
-        // map.loadImage("/pin.png", (error, image) => {
-        //   if (error) throw error;
-
-        //   // Add the image to the map style.
-        //   map.addImage("pin", image);
-        // });
 
         // Add a layer showing points/markers
         map.addLayer({
