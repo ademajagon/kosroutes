@@ -47,9 +47,9 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
           color,
           geoJson: { features },
         } = route;
-        const { coordinates: startCoordinates } = features[0].geometry;
-        const { coordinates: endCoordinates } =
-          features[features.length - 1].geometry;
+        // const { coordinates: startCoordinates } = features[0].geometry;
+        // const { coordinates: endCoordinates } =
+        //   features[features.length - 1].geometry;
 
         map.addSource(slug, {
           type: "geojson",
@@ -92,7 +92,7 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
               },
               geometry: {
                 type: "Point",
-                coordinates: startCoordinates[0],
+                // coordinates: startCoordinates[0],
               },
             },
           },
@@ -110,7 +110,7 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
               },
               geometry: {
                 type: "Point",
-                coordinates: endCoordinates.pop(),
+                // coordinates: endCoordinates.pop(),
               },
             },
           },
@@ -136,12 +136,12 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
           map.setPaintProperty(slug, "line-width", 4);
         });
 
-        map.loadImage("/pin.png", (error, image) => {
-          if (error) throw error;
+        // map.loadImage("/pin.png", (error, image) => {
+        //   if (error) throw error;
 
-          // Add the image to the map style.
-          map.addImage("pin", image);
-        });
+        //   // Add the image to the map style.
+        //   map.addImage("pin", image);
+        // });
 
         // Add a layer showing points/markers
         map.addLayer({
