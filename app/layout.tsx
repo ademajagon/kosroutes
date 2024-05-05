@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
+import MapBox from "components/mapbox";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,9 +35,12 @@ export default function RootLayout({
           </Head>
 
           <main className="flex sm:h-screen w-screen sm:overflow-hidden">
-            <aside className="w-full sm:w-[430px] bg-primary min-h-screen sm:overflow-x-hidden sm:overflow-y-hidden sm:absolute top-0 bottom-0 px-5 ">
+            {/* <aside className="w-full sm:w-[430px] bg-primary min-h-screen sm:overflow-x-hidden sm:overflow-y-hidden sm:absolute top-0 bottom-0 px-5 ">
               {children}
-            </aside>
+            </aside> */}
+            <div className="block text-xl text-forest h-screen relative w-full">
+              <MapBox />
+            </div>
           </main>
         </ThemeProvider>
       </body>

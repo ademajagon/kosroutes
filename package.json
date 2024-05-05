@@ -13,7 +13,9 @@
     "next": "14.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "worker-loader": "^3.0.8",
+    "mapbox-gl": "^2.10.0"
   },
   "devDependencies": {
     "@types/node": "^20",
