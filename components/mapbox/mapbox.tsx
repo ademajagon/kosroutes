@@ -15,12 +15,6 @@ type MapBoxProps = {
   initialLng?: number;
 };
 
-function getStyleForTheme(theme: string) {
-  return theme === "dark"
-    ? "mapbox://styles/mapbox/dark-v11"
-    : "mapbox://styles/mapbox/outdoors-v11";
-}
-
 const initialLng = 20.82953;
 const initialLat = 42.6185676;
 const zoom = 8.5;
@@ -33,7 +27,7 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: getStyleForTheme("light"),
+      style: "mapbox://styles/mapbox/outdoors-v12",
       center: [initialLng, initialLat],
       zoom,
     });
