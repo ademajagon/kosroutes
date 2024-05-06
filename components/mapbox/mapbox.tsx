@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl-csp";
 import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
-import { useRouter } from "next/router";
 import { Route, Routes } from "types";
 
 mapboxgl.workerClass = MapboxWorker;
@@ -11,8 +10,6 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 type MapBoxProps = {
   routes: Routes;
-  initialLat?: number;
-  initialLng?: number;
 };
 
 const initialLng = 20.82953;
@@ -22,7 +19,9 @@ const zoom = 8.5;
 function MapBox({ routes }: MapBoxProps): JSX.Element {
   const mapContainer = useRef(null);
 
-  const [stateMap, setStateMap] = useState(null);
+  // const [stateMap, setStateMap] = useState(null);
+
+  console.log(routes, "ROUTES");
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -32,134 +31,9 @@ function MapBox({ routes }: MapBoxProps): JSX.Element {
       zoom,
     });
 
-    map.on("load", () => {
-      routes.forEach((route: Route) => {
-        const {
-          slug,
-          color,
-          geoJson: { features },
-        } = route;
-
-        map.addSource(slug, {
-          type: "geojson",
-          data: route.geoJson,
-        });
-        // The path/route
-        map.addLayer({
-          id: slug,
-          type: "line",
-          source: slug,
-          layout: {
-            "line-join": "round",
-            "line-cap": "round",
-          },
-          paint: {
-            "line-color": color,
-            "line-width": 4,
-          },
-        });
-        // Add a fill layer as source for hover, or we lose our click target when inside the path
-        map.addLayer({
-          id: `${slug}-fill`,
-          type: "fill",
-          source: slug,
-          paint: {
-            "fill-color": "transparent",
-            "fill-outline-color": "transparent",
-          },
-        });
-        // Start point
-        map.addLayer({
-          id: `${slug}-start`,
-          type: "circle",
-          source: {
-            type: "geojson",
-            data: {
-              type: "Feature",
-              properties: {
-                description: "Activity Start",
-              },
-              geometry: {
-                type: "Point",
-              },
-            },
-          },
-        });
-        // End point
-        map.addLayer({
-          id: `${slug}-end`,
-          type: "circle",
-          source: {
-            type: "geojson",
-            data: {
-              type: "Feature",
-              properties: {
-                description: "Activitiy End",
-              },
-              geometry: {
-                type: "Point",
-              },
-            },
-          },
-        });
-
-        map.on("mouseenter", `${slug}-fill`, () => {
-          // Change the cursor style as a UI indicator.
-          map.getCanvas().style.cursor = "pointer";
-          // Increase width of route path
-          map.setPaintProperty(slug, "line-width", 6);
-        });
-
-        map.on("mouseleave", `${slug}-fill`, () => {
-          map.getCanvas().style.cursor = "";
-          map.setPaintProperty(slug, "line-width", 4);
-        });
-
-        // Add a layer showing points/markers
-        map.addLayer({
-          id: `${slug}-points`,
-          type: "symbol",
-          source: slug,
-          layout: {
-            "icon-image": ["get", "icon"],
-            "icon-size": 0.1,
-            "icon-allow-overlap": true,
-          },
-        });
-
-        // When a click event occurs on a feature in the places layer, open a popup at the
-        // location of the feature, with description HTML from its properties.
-        map.on("click", `${slug}-points`, (e) => {
-          // Copy coordinates array.
-          const coordinates = e.features[0].geometry.coordinates.slice();
-          const { description } = e.features[0].properties;
-
-          // Ensure that if the map is zoomed out such that multiple
-          // copies of the feature are visible, the popup appears
-          // over the copy being pointed to.
-          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-          }
-
-          new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
-        });
-
-        // Change the cursor to a pointer when the mouse is over the points layer.
-        map.on("mouseenter", `${slug}-points`, () => {
-          map.getCanvas().style.cursor = "pointer";
-        });
-
-        // Change it back to a pointer when it leaves.
-        map.on("mouseleave", `${slug}-points`, () => {
-          map.getCanvas().style.cursor = "";
-        });
-      });
-      // Save map in state so it can be accessed later
-      setStateMap(map);
-    });
+    // map.on("load", () => {
+    //   setStateMap(map);
+    // });
     return () => map.remove();
   }, [routes]);
 
