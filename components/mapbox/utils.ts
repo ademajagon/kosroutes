@@ -33,3 +33,42 @@ export const flyToGeoJson = (map, geoJson) => {
     padding: 20,
   });
 };
+
+export const setAllLayersVisibility = (
+  map,
+  slug: string,
+  essentialsVisibility: string,
+  extrasVisiblity?: string
+) => {
+  console.log(map, "MAPPPP");
+  if (map) {
+    map.setLayoutProperty(slug, "visibility", essentialsVisibility);
+    map.setLayoutProperty(`${slug}-fill`, "visibility", essentialsVisibility);
+    map.setLayoutProperty(
+      `${slug}-end`,
+      "visibility",
+      extrasVisiblity || essentialsVisibility
+    );
+    map.setLayoutProperty(
+      `${slug}-start`,
+      "visibility",
+      extrasVisiblity || essentialsVisibility
+    );
+    map.setLayoutProperty(
+      `${slug}-points`,
+      "visibility",
+      extrasVisiblity || essentialsVisibility
+    );
+  }
+};
+
+export const getHoverGeoJson = (coordinates) => ({
+  type: "Feature",
+  properties: {
+    description: "Current coordinate from graph",
+  },
+  geometry: {
+    type: "Point",
+    coordinates,
+  },
+});
