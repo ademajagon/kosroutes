@@ -9,13 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mapbox/togeojson": "^0.16.0",
     "@radix-ui/colors": "^0.1.8",
+    "@turf/helpers": "^6.5.0",
+    "@turf/length": "^6.5.0",
     "mapbox-gl": "^2.10.0",
     "next": "13.0.0",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
-    "worker-loader": "^3.0.8"
+    "worker-loader": "^3.0.8",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "@types/node": "^20",
