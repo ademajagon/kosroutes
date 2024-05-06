@@ -5,6 +5,7 @@ import MapBox from "components/mapbox";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { useIsSmall } from "utils/hooks";
+import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
@@ -24,7 +25,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   }, [router]);
 
   return (
-    <>
+    <ThemeProvider
+      attribute="class"
+      value={{ light: "light-theme", dark: "dark-theme" }}
+    >
       <Head>
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </Head>
@@ -42,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           </div>
         )}
       </main>
-    </>
+    </ThemeProvider>
   );
 }
 
