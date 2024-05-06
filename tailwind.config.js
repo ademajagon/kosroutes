@@ -1,13 +1,15 @@
-import type { Config } from "tailwindcss";
+const { fontFamily } = require("tailwindcss/defaultTheme"); // eslint-disable-line
 
-const config: Config = {
+module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Proxima Nova", ...fontFamily.sans],
+      },
       colors: {
         forest: {
           lightest: "#E8F5D6",
@@ -39,4 +41,3 @@ const config: Config = {
   },
   plugins: [],
 };
-export default config;
