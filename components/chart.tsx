@@ -93,7 +93,13 @@ function ChartInner({ data, height, width }: ChartInnerProps): JSX.Element {
     setHoverCoordinate(null);
   };
 
-  function HoverText({ y, children }: { y: number; children: ReactNode }) {
+  function HoverText({
+    y,
+    children,
+  }: {
+    y: number;
+    children: React.ReactNode;
+  }) {
     const alignToRight = hoverX > width - margin.left - margin.right - 55;
     return (
       <text
