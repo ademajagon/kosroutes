@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import MapBox from "components/mapbox";
 import { Stat } from "components/route";
+import Chart from "components/chart";
 const gpxUtils = require("../utils/gpxutils");
 
 function RoutePage({
@@ -107,7 +108,11 @@ function RoutePage({
             </div>
           )}
 
-          <div>CHART</div>
+          <div className="p-3 mb-2 border rounded border-primary">
+            <Chart
+              coordinates={route.geoJson.features[0].geometry.coordinates}
+            />
+          </div>
 
           <ul className="grid grid-cols-2 grid-rows-2 gap-2 mb-6">
             <Stat
