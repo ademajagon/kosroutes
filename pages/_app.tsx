@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             name="viewport"
             content="width=device-width, user-scalable=no"
           />
+          <title>Kosova Routes</title>
         </Head>
         <main className="flex bg-[#E6E4E0] sm:h-screen w-screen sm:overflow-hidden">
           <aside

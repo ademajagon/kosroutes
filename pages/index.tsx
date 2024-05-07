@@ -11,11 +11,13 @@ function Home({ routes }: RoutesProps) {
   return (
     <div className="pt-3">
       <nav className="flex justify-end">
-        <button>Add Route</button>
+        <button className="text-white">Add Route</button>
       </nav>
 
       <header className="py-16 text-center">
-        <h1 className="text-3xl font-bold uppercase py-3">Kosova Routes</h1>
+        <h1 className="text-3xl font-bold uppercase py-3 text-white">
+          Kosova Routes
+        </h1>
         <p className="text-primary">
           A selection of trails for walking and running in Kosovo
         </p>
