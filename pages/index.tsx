@@ -34,6 +34,10 @@ function Home({ routes }: RoutesProps) {
           })}
         </ol>
       </section>
+
+      <footer className="pb-6 text-center text-secondary">
+        A project by <span className="text-forest">Agon Ademaj</span>
+      </footer>
     </div>
   );
 }

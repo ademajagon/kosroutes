@@ -5,6 +5,7 @@ import { useIsSmall } from "utils/hooks";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import MapBox from "components/mapbox";
+import { Stat } from "components/route";
 const gpxUtils = require("../utils/gpxutils");
 
 function RoutePage({
@@ -105,6 +106,38 @@ function RoutePage({
               )}
             </div>
           )}
+
+          <div>CHART</div>
+
+          <ul className="grid grid-cols-2 grid-rows-2 gap-2 mb-6">
+            <Stat
+              type="Distance"
+              value={`${Math.round(route.distance * 10) / 10} km`}
+              centered
+              className={statBoxClassName}
+            />
+
+            <Stat
+              type="Elevation"
+              value={`${Math.round(route.elevation)} m`}
+              centered
+              className={statBoxClassName}
+            />
+
+            {route.rating && (
+              <Stat
+                type="Rating"
+                value={
+                  <>
+                    {route.rating}
+                    <span className="text-xs text-gray-400">/5</span>
+                  </>
+                }
+                centered
+                className={statBoxClassName}
+              />
+            )}
+          </ul>
         </>
       )}
     </motion.div>
