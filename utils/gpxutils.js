@@ -52,7 +52,12 @@ const routes = routeFilePaths.map((filePath) => {
     nextCoordinate.push(totalDistance);
 
     const elevationDifference = nextCoordinate[2] - currentCoordinate[2];
-    if (elevationDifference > 0) elevation += elevationDifference;
+    if (elevationDifference > 0) {
+      elevation += elevationDifference;
+    }
+    if (nextCoordinate[2] >= 1400 && nextCoordinate[2] <= 2400) {
+      elevation = nextCoordinate[2];
+    }
   });
 
   if (metadata?.points) {
