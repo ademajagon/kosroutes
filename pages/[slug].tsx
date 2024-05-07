@@ -40,10 +40,7 @@ function RoutePage({
       {route && (
         <>
           <nav className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 -mx-5 border-b border-primary bg-blur">
-            <Link
-              href="/"
-              className="transition-opacity hover:opacity-50 text-white"
-            >
+            <Link href="/" className="transition-opacity hover:opacity-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
