@@ -40,7 +40,6 @@ export const setAllLayersVisibility = (
   essentialsVisibility: string,
   extrasVisiblity?: string
 ) => {
-  console.log(map, "MAPPPP");
   if (map) {
     map.setLayoutProperty(slug, "visibility", essentialsVisibility);
     map.setLayoutProperty(`${slug}-fill`, "visibility", essentialsVisibility);

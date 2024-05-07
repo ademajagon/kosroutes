@@ -8,13 +8,9 @@ const { lineString } = require("@turf/helpers");
 
 const ROUTES_PATH = path.join(process.cwd(), "public", "gpx");
 
-console.log(ROUTES_PATH);
-
 const routeFilePaths = fs
   .readdirSync(ROUTES_PATH)
   .filter((p) => /\.gpx?$/.test(p));
-
-console.log(routeFilePaths, "ROUTE FILE PATHS");
 
 const routes = routeFilePaths.map((filePath) => {
   const source = new xmldom.DOMParser().parseFromString(
@@ -35,8 +31,6 @@ const routes = routeFilePaths.map((filePath) => {
 
   coordinates.forEach((currentCoordinate, i) => {
     const nextCoordinate = coordinates[i + 1];
-
-    console.log(nextCoordinate, "NEXT");
 
     if (!nextCoordinate) {
       return;
@@ -94,6 +88,7 @@ const routes = routeFilePaths.map((filePath) => {
     added: metadata?.added,
     author: metadata?.author || null,
     coordinates,
+    coordinate: metadata?.coordinate || null,
   };
 });
 

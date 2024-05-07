@@ -142,6 +142,14 @@ function RoutePage({
                 className={statBoxClassName}
               />
             )}
+
+            <Stat
+              type="Coordinates"
+              value={route.coordinate}
+              centered
+              fontSmall
+              className={statBoxClassName}
+            />
           </ul>
         </>
       )}

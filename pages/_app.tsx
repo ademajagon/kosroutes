@@ -15,8 +15,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
   const isSmall = useIsSmall();
 
-  console.log(isSmall, "is small");
-
   useEffect(() => {
     const sidebar = aside.current;
 

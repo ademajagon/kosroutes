@@ -8,8 +8,6 @@ type RoutesProps = {
 };
 
 function Home({ routes }: RoutesProps) {
-  console.log(routes, "ROUTES");
-
   return (
     <div className="pt-3">
       <nav className="flex justify-end">
@@ -19,13 +17,13 @@ function Home({ routes }: RoutesProps) {
       <header className="py-16 text-center">
         <h1 className="text-3xl font-bold uppercase py-3">Kosova Routes</h1>
         <p className="text-primary">
-          A selection of trails for walking and running in Kosovë
+          A selection of trails for walking and running in Kosovo
         </p>
       </header>
 
       <section>
-        <div>
-          <h1>All Routes</h1>
+        <div className="sticky top-0 z-10 flex justify-between px-5 py-4 -mx-5 bg-blur">
+          <h1 className="text-2xl font-bold text-primary">All Routes</h1>
         </div>
 
         <ol>

@@ -28,6 +28,7 @@ export type Route = {
     name: string;
     url: string;
   };
+  coordinate?: string;
 };
 
 export type Routes = Array<Route>;

@@ -250,8 +250,6 @@ function Chart({ coordinates }: ChartProps) {
     coordinates: [x[0], x[1]],
   }));
 
-  console.log(data, "DATA");
-
   return (
     <div className="relative w-full h-full" ref={ref}>
       {bounds.width > 0 && (
