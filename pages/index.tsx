@@ -2,6 +2,7 @@ import Route from "components/route";
 import { GetStaticProps } from "next";
 import { Routes } from "types";
 const gpxUtils = require("../utils/gpxutils.js");
+import Button from "components/button";
 
 type RoutesProps = {
   routes: Routes;
@@ -11,7 +12,15 @@ function Home({ routes }: RoutesProps) {
   return (
     <div className="pt-3">
       <nav className="flex justify-end">
-        <button>Add Route</button>
+        <Button
+          onClick={() =>
+            window.open(
+              "mailto:contact@agonademaj.com?subject=I want to add a route!"
+            )
+          }
+        >
+          Add Route
+        </Button>
       </nav>
 
       <header className="py-16 text-center">
